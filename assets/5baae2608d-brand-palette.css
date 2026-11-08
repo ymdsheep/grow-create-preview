@@ -1,0 +1,70 @@
+/* Primary surfaces and typography use one shared neutral palette on every page. */
+:root {
+  --ink: #0b0d10;
+  --paper: #ffffff;
+  --white: #ffffff;
+  --green: #0b0d10;
+  --quiet: #595d63;
+  --line: #d3d5d7;
+  --info-white: #ffffff;
+  --info-meta: #595d63;
+}
+
+body { background: var(--paper); color: var(--ink); }
+
+.total-design,
+.total-design--living {
+  --accent: #0b0d10;
+  --wash: #ffffff;
+  --rule: #d3d5d7;
+  --dark: #0b0d10;
+  --figure-paper: #ffffff;
+}
+
+.sequence-art,
+.location-map,
+.company-map svg,
+.review-foot,
+.review-note { background: #ffffff; }
+
+.review-foot,
+.review-note { border-top: 1px solid var(--line); }
+
+.about-philosophy::before { background: none; }
+.about-philosophy,
+.statement,
+.contact,
+.site-footer,
+.cta-band,
+.info-cta,
+.design-consultation { background: var(--ink); color: #ffffff; }
+
+.hero-stage-sprout,
+.hero-stage-young,
+.hero-stage-developing,
+.hero-growing-tree { filter: url("#paper-tree-tone"); }
+
+.hero-growth-person,
+.sequence-drawing image,
+.location-map image,
+.company-map image { filter: grayscale(1); }
+
+.hero-growth-art > ellipse { fill: #0b0d10; }
+
+/* The town is monochrome at rest. Colour appears on the selected group only. */
+.town-bubble[data-entry] { --paper-ink: #0b0d10; }
+body[data-entry="shop"] .town-bubble[data-entry="shop"] { --paper-ink: #2c644f; }
+body[data-entry="home"] .town-bubble[data-entry="home"] { --paper-ink: #426482; }
+body[data-entry="other"] .town-bubble[data-entry="other"] { --paper-ink: #785c38; }
+
+/* One coloured detail in each selected business drawing. */
+[data-center-sequence][data-active-step="exterior"] { --sequence-exterior-fill: #397859; }
+[data-center-sequence][data-active-step="interior"] { --sequence-interior-fill: #dba23b; }
+[data-center-sequence][data-active-step="signage"] { --sequence-signage-fill: #386e57; }
+
+/* Form errors retain a small semantic accent rather than a coloured panel. */
+.contact-form .form-error { color: #9b342b; }
+.state-message--error { background: #ffffff; color: #9b342b; border-color: #9b342b; }
+
+::selection { background: #0b0d10; color: #ffffff; }
+html[data-hero-still] { scroll-behavior: auto; }

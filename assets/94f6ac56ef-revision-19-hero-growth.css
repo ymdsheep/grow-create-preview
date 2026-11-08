@@ -1,0 +1,193 @@
+.hero--growth .hero-art {
+  animation: none;
+}
+
+.hero--growth .hero-copy-line {
+  display: block;
+}
+
+.hero-growth-art {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-char {
+  display: inline-block;
+}
+
+.hero-seed,
+.hero-stage-sprout,
+.hero-stage-young,
+.hero-stage-developing {
+  opacity: 0;
+}
+
+.hero-stage-sprout,
+.hero-stage-young,
+.hero-stage-developing,
+.hero-growing-tree {
+  transform-box: view-box;
+  transform-origin: 613px 1167px;
+}
+
+@media (max-width: 700px) {
+  .hero.hero--growth {
+    --growth-art-size: min(100vw, 520px, max(240px, calc(100svh - 224px)));
+    --growth-lead-size: clamp(21px, 6.4vw, 30px);
+    --growth-top: clamp(34px, 10vw, 52px);
+    height: auto;
+    min-height: 0;
+    padding: var(--growth-top) var(--gutter) 18px;
+  }
+
+  .hero--growth .hero-lead {
+    position: static;
+    font-size: var(--growth-lead-size);
+  }
+
+  .hero--growth .hero-art {
+    top: calc(var(--growth-top) + var(--growth-lead-size) * 3.1 + 8px);
+    right: auto;
+    left: 50%;
+    width: var(--growth-art-size);
+    height: auto;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+  }
+
+  .hero--growth .hero-verb {
+    position: static;
+    display: block;
+    margin-top: calc(var(--growth-art-size) - 12px);
+    font-size: min(17.2vw, 112px);
+  }
+
+  .hero--growth .hero-scroll {
+    position: static;
+    width: max-content;
+    margin: 10px 0 0 auto;
+  }
+}
+
+@media (min-width: 701px) and (max-height: 760px) {
+  .hero.hero--growth {
+    --growth-short-height: max(340px, calc(100svh - 100px));
+    height: var(--growth-short-height);
+    min-height: 0;
+  }
+
+  .hero--growth .hero-art {
+    top: auto;
+    right: 0;
+    bottom: 10px;
+    width: min(68vw, calc(var(--growth-short-height) - 20px));
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .hero--growth .hero-lead {
+    top: clamp(28px, 11svh, 82px);
+    font-size: clamp(26px, min(3.65vw, 6.2svh), 52px);
+  }
+
+  .hero--growth .hero-verb {
+    bottom: 32px;
+    font-size: clamp(54px, min(12.5vw, 20svh), 154px);
+  }
+
+  .hero--growth .hero-scroll {
+    bottom: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-hero-still]) .hero-char {
+    animation: growth-char-in .25s cubic-bezier(.2, .65, .3, 1) var(--char-delay) both;
+  }
+
+  html:not([data-hero-still]) .hero-seed {
+    animation: growth-seed .82s ease-out both;
+  }
+
+  html:not([data-hero-still]) .hero-stage-sprout {
+    animation:
+      growth-sprout-size 1.10s cubic-bezier(.22, .6, .36, 1) .36s both,
+      growth-sprout-show 1.12s linear .32s both;
+  }
+
+  html:not([data-hero-still]) .hero-stage-young {
+    animation:
+      growth-young-size 1.20s cubic-bezier(.22, .6, .36, 1) 1.12s both,
+      growth-young-show 1.26s linear 1.10s both;
+  }
+
+  html:not([data-hero-still]) .hero-stage-developing {
+    animation:
+      growth-developing-size 1.10s cubic-bezier(.22, .6, .36, 1) 2.05s both,
+      growth-developing-show 1.37s linear 2.03s both;
+  }
+
+  html:not([data-hero-still]) .hero-growing-tree {
+    animation:
+      growth-tree-size 1.5s cubic-bezier(.22, .6, .36, 1) 3.09s both,
+      growth-tree-show .33s linear 3.07s both;
+  }
+}
+
+@keyframes growth-char-in {
+  from { opacity: 0; transform: translateY(.18em); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes growth-seed {
+  0% { opacity: 0; transform: translateY(-32px); }
+  23%, 68% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(7px); }
+}
+
+@keyframes growth-sprout-show {
+  0% { opacity: 0; }
+  16%, 70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes growth-sprout-size {
+  from { transform: scale(.14, .12) rotate(-4deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@keyframes growth-young-show {
+  0% { opacity: 0; }
+  26.2%, 73.8% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes growth-young-size {
+  from { transform: scale(.38) rotate(2deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@keyframes growth-tree-size {
+  from { transform: scale(.72); }
+  to { transform: scale(1); }
+}
+
+@keyframes growth-tree-show {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes growth-developing-size {
+  from { transform: scale(.66); }
+  to { transform: scale(1); }
+}
+
+@keyframes growth-developing-show {
+  0% { opacity: 0; }
+  24.1%, 75.9% { opacity: 1; }
+  100% { opacity: 0; }
+}

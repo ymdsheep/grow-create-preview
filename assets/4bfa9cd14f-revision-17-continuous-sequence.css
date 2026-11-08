@@ -1,0 +1,97 @@
+@import url("/grow-create-preview/assets/d37a30f3df-revision-16-design-sequence.css");
+
+.sequence-track {
+  --stage-top: clamp(14px, 10svh, 88px);
+  --step-height: clamp(320px, 51svh, 530px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.64fr) minmax(0, 1fr);
+  gap: clamp(12px, 4.6vw, 78px);
+  border-top: 1px solid var(--rule);
+}
+
+.sequence-stage {
+  align-self: start;
+  min-width: 0;
+  padding-block: 12px;
+}
+
+.continuous-sequence[data-motion="scroll"] .sequence-stage,
+.continuous-sequence[data-motion="reduced"] .sequence-stage {
+  position: sticky;
+  top: var(--stage-top);
+}
+
+.sequence-stage .sequence-drawing {
+  max-height: calc(100svh - var(--stage-top) - 70px);
+}
+
+.sequence-status {
+  display: flex;
+  align-items: center;
+  gap: clamp(7px, 1.25vw, 15px);
+  min-height: 35px;
+  padding-inline: clamp(5px, 1vw, 14px);
+  border-bottom: 1px solid var(--rule);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 720;
+  white-space: nowrap;
+}
+
+.sequence-status > span:first-child {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .07em;
+}
+
+.sequence-meter {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.sequence-meter i {
+  display: block;
+  width: 25%;
+  height: 2px;
+  margin-top: -.5px;
+  background: var(--accent);
+}
+
+.continuous-sequence .sequence-step {
+  display: flex;
+  border-top: 0;
+  padding-block: clamp(18px, 2.5vw, 36px);
+}
+
+.continuous-sequence .sequence-step + .sequence-step { border-top: 1px solid var(--rule); }
+.continuous-sequence[data-motion="scroll"] .sequence-step,
+.continuous-sequence[data-motion="reduced"] .sequence-step {
+  min-height: max(var(--stage-height, 0px), var(--step-height));
+}
+
+.sequence-label b { font: inherit; }
+.continuous-sequence .sequence-label span {
+  padding: 4px 7px;
+  border: 1px solid var(--rule);
+}
+
+.continuous-sequence .sequence-step[aria-current] .sequence-label span {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .sequence-track {
+    --stage-top: clamp(14px, 16svh, 136px);
+    --step-height: clamp(182px, 26svh, 252px);
+    grid-template-columns: minmax(0, 1.47fr) minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .continuous-sequence .sequence-step { padding-block: 11px; }
+}
+
+@media (max-width: 319px) {
+  .sequence-track { grid-template-columns: minmax(0, 1fr); }
+}

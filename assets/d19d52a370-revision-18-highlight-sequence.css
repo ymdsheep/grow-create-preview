@@ -1,0 +1,14 @@
+@import url("/grow-create-preview/assets/4bfa9cd14f-revision-17-continuous-sequence.css");
+
+.highlight-sequence .sequence-note {
+  position: relative;
+}
+
+.highlight-sequence .sequence-step[aria-current="step"] .sequence-note::before {
+  position: absolute;
+  inset-block: .35em;
+  inset-inline-start: calc(-1 * clamp(7px, 1.1vw, 16px));
+  width: 2px;
+  background: var(--accent);
+  content: "";
+}

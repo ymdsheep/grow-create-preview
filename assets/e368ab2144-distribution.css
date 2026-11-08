@@ -1,0 +1,71 @@
+.design-distribution {
+  position: relative;
+  isolation: isolate;
+  border-top: 1px solid var(--ink);
+  margin-block-end: clamp(40px, 6vw, 90px);
+}
+
+.distribution-overview,
+.distribution-part {
+  display: grid;
+  grid-template-columns: minmax(0, 1.64fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 4.6vw, 78px);
+}
+
+.distribution-overview { padding-block: 16px clamp(40px, 5vw, 72px); }
+.distribution-parts { list-style: none; margin: 0; padding: 0; }
+.distribution-part { border-top: 1px solid var(--rule); padding-block: clamp(36px, 5vw, 72px); }
+.assembly-canvas,
+.distribution-art-slot { min-width: 0; }
+.assembly-drawing,
+.distribution-drawing { display: block; width: 100%; height: auto; }
+
+.distribution-part-visual {
+  position: relative;
+  z-index: var(--layer-order);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.design-distribution[data-motion="animate"] [data-fallback-assembly] { opacity: 0; }
+
+.distribution-note {
+  position: relative;
+  z-index: 5;
+  background: var(--paper);
+}
+
+.distribution-note .sequence-note { max-width: 27em; }
+.distribution-note .sequence-label { color: var(--ink); }
+.distribution-note h3 { font-size: clamp(22px, 2.35vw, 34px); }
+.distribution-note h3 + p,
+.distribution-note .sequence-detail { font-size: clamp(15px, 1.26vw, 17px); line-height: 1.85; }
+.distribution-note .sequence-detail dt { color: var(--ink); }
+.design-distribution figcaption { border-top: 1px solid var(--rule); padding-top: 10px; color: var(--quiet); font-size: 11px; text-align: right; }
+
+
+@media (max-width: 760px) {
+  .distribution-overview,
+  .distribution-part { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .distribution-overview { padding-block: 8px 36px; }
+  .distribution-part { padding-block: 36px 40px; }
+  .distribution-note .sequence-note { max-width: none; }
+  .distribution-note .sequence-detail { font-size: 16px; line-height: 1.85; }
+  .distribution-note .sequence-detail dt { font-size: 13px; }
+  .distribution-note .sequence-detail ul { font-size: 14px; }
+  .distribution-note h3 + p { font-size: 16px; }
+}
+
+@media print {
+  .distribution-part-visual { transform: none !important; }
+  .design-distribution [data-fallback-assembly] { opacity: 1 !important; }
+}
+
+/* A complete model in every description, with only its subject at 100%. */
+.distribution-drawing [data-context-part] {
+  opacity: .1;
+  transition: opacity .18s ease;
+}
+.design-distribution[data-motion="animate"][data-distribution-state="assembled"] .distribution-drawing [data-context-part] { opacity: 0; }
+.design-distribution[data-motion="still"] .distribution-drawing [data-context-part] { transition: none; }

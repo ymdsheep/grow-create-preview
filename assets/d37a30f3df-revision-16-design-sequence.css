@@ -1,0 +1,144 @@
+.total-design .design-intro {
+  display: block;
+  padding-block: clamp(28px, 4.2vw, 70px);
+}
+
+@media (min-width: 800px) {
+  .total-design .intro-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    column-gap: clamp(36px, 5.4vw, 86px);
+    align-items: end;
+  }
+
+  .total-design .intro-copy h1 {
+    grid-area: 2 / 1 / 4;
+    font-size: clamp(40px, 5.2vw, 78px);
+  }
+
+  .total-design .intro-lead { grid-area: 2 / 2; }
+  .total-design .design-links { grid-area: 3 / 2; }
+}
+
+.design-sequence {
+  border-top: 1px solid var(--accent);
+  margin-bottom: clamp(33px, 5.2vw, 78px);
+}
+
+.sequence-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: clamp(22px, 3.2vw, 44px) clamp(16px, 2.7vw, 34px);
+}
+
+.sequence-heading h2 {
+  font-size: clamp(24px, 3.05vw, 46px);
+  font-weight: 790;
+  letter-spacing: -.046em;
+  line-height: 1.32;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.sequence-heading > span {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 670;
+}
+
+.sequence-heading > span span { margin-left: 6px; }
+.sequence-definitions { position: absolute; pointer-events: none; }
+.sequence-steps { list-style: none; padding: 0; margin: 0; }
+
+.sequence-step {
+  display: grid;
+  grid-template-columns: minmax(0, 1.64fr) minmax(0, 1fr);
+  gap: clamp(12px, 4.6vw, 78px);
+  align-items: center;
+  padding-block: clamp(14px, 2vw, 28px);
+  border-top: 1px solid var(--rule);
+}
+
+.sequence-art {
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.sequence-drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sequence-note {
+  max-width: 25em;
+  padding-block: 4px;
+  line-break: strict;
+}
+
+.sequence-label {
+  display: flex;
+  align-items: center;
+  gap: clamp(7px, 1vw, 14px);
+  color: var(--accent);
+  font-size: clamp(12px, 1.2vw, 16px);
+  line-height: 1.4;
+  font-weight: 760;
+}
+
+.sequence-label span {
+  padding-right: clamp(7px, 1vw, 14px);
+  border-right: 1px solid currentColor;
+  font: 720 11px/1.2 Arial, sans-serif;
+  letter-spacing: .12em;
+}
+
+.sequence-note h3 {
+  margin: clamp(6px, 1.25vw, 18px) 0 clamp(4px, .7vw, 11px);
+  font-size: clamp(15px, 2.35vw, 34px);
+  line-height: 1.4;
+  font-weight: 770;
+  letter-spacing: -.035em;
+}
+
+.sequence-note h3 + p {
+  color: #464646;
+  font-size: clamp(14px, 1.26vw, 17px);
+  line-height: 1.68;
+}
+
+.design-sequence figcaption {
+  border-top: 1px solid var(--rule);
+  padding-top: 9px;
+  color: #595959;
+  font-size: 11px;
+  text-align: right;
+}
+
+.design-mark {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.design-mark circle { fill: var(--accent); stroke: #ffffff; stroke-width: 2; }
+.design-mark text { fill: var(--accent); stroke: none; font-size: 18px; font-weight: 720; }
+.guide-dash, .guide-area { stroke-dasharray: 6 5; }
+.guide-area { fill: var(--accent); fill-opacity: .13; }
+
+@media (max-width: 640px) {
+  .sequence-heading { display: block; }
+  .sequence-heading > span { display: inline-block; margin-top: 6px; }
+  .sequence-step { grid-template-columns: minmax(0, 1.47fr) minmax(0, 1fr); gap: 11px; }
+  .design-mark { stroke-width: 3.8; }
+  .design-mark text { display: none; }
+}
+
+@media (max-width: 319px) {
+  .sequence-step { grid-template-columns: 1fr; }
+}

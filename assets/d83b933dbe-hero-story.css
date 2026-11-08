@@ -1,0 +1,27 @@
+/* Geometry and typography still come from the approved-direction review. */
+.hero--story .hero-char,
+.hero--story .hero-seed,
+.hero--story .hero-stage-sprout,
+.hero--story .hero-stage-young,
+.hero--story .hero-stage-developing,
+.hero--story .hero-growing-tree { animation: none !important; }
+
+.hero-story-pose { opacity: 0; filter: grayscale(1); }
+.hero-story-pose[data-story-pose="resting"] { opacity: 1; }
+.hero-story-water { opacity: 0; fill: none; stroke: #787878; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 3 9; }
+.hero-story-town { opacity: .72; filter: grayscale(1); transform-box: fill-box; transform-origin: 50% 100%; }
+
+html[data-hero-story="pending"] .hero--story .hero-char,
+html[data-hero-story="pending"] .hero--story .hero-growing-tree,
+html[data-hero-story="pending"] .hero-story-town,
+html[data-hero-story="pending"] .hero-story-pose { opacity: 0; }
+html[data-hero-story="pending"] .hero-story-pose[data-story-pose="planting"] { opacity: 1; }
+
+@media print {
+  .hero--story .hero-char, .hero--story .hero-growing-tree,
+  .hero--story .hero-story-pose[data-story-pose="resting"] { opacity: 1 !important; transform: none !important; }
+  .hero--story .hero-story-town { opacity: .72 !important; transform: none !important; clip-path: none !important; }
+  .hero--story .hero-seed, .hero--story .hero-stage-sprout,
+  .hero--story .hero-stage-young, .hero--story .hero-stage-developing,
+  .hero--story .hero-story-pose:not([data-story-pose="resting"]), .hero--story .hero-story-water { opacity: 0 !important; }
+}
