@@ -5,23 +5,23 @@
 .hero--story .hero-verb{bottom:14px;z-index:2;font-size:clamp(100px,13vw,184px);}
 .hero--story .hero-scroll{bottom:23px;z-index:3;}
 .hero--story .hero-char{animation:none!important;}
-.hero-panorama{position:absolute;inset:auto 0 calc(158px + var(--scene-size)*.06938);width:100%;height:31.31vw;z-index:-2;pointer-events:none;transform-origin:50% 100%;}
+.hero-panorama{position:absolute;inset:auto 0 calc(158px + var(--scene-size)*.06938);width:100%;height:31.31vw;z-index:-2;pointer-events:none;clip-path:none;}
 .hero-panorama>svg{display:block;width:100%;height:100%;}
 .hero-tree-layer{opacity:0;transform-box:view-box;transform-origin:613px 1167px;filter:url(#paper-tree-tone);}
 .hero-tree-layer[data-tree-stage="mature"]{opacity:1;filter:url(#paper-tree-tone);}
- .hero-water,.hero-seed{opacity:0;}
-.hero-water{fill:none;stroke:#7A7D80;stroke-width:2;stroke-linecap:round;stroke-dasharray:2 10;}
+ .hero-seed{opacity:0;}
 .hero-person-pose{opacity:0;filter:grayscale(1);}
 .hero-person-pose[data-paper-pose="resting"]{opacity:1;}
 html[data-hero-story="pending"] .hero-person-pose{opacity:0;}
 html[data-hero-story="pending"] .hero-person-pose[data-paper-pose="planting"]{opacity:1;}
 html[data-hero-story="pending"] .hero-panorama,html[data-hero-story="pending"] .hero-tree-layer,html[data-hero-story="pending"] .hero-char{opacity:0;}
-.hero-panorama,.hero-tree-layer{will-change:transform,opacity;}
+.hero-panorama{will-change:clip-path;}
+.hero-tree-layer{will-change:transform,opacity;}
 html[data-hero-story="complete"] .hero-panorama,html[data-hero-story="complete"] .hero-tree-layer,html[data-hero-story="still"] .hero-panorama,html[data-hero-story="still"] .hero-tree-layer{will-change:auto;}
 
 /* The original town grain stays visible between rich black and clean white. */
 .town-section{background:#FFFFFF;}
-.town-section .town-art{max-width:none;width:calc(100% + var(--gutter)*2);margin-left:calc(var(--gutter)*-1);margin-right:calc(var(--gutter)*-1);}
+.town-section .town-art{max-width:1440px;width:100%;margin-left:auto;margin-right:auto;}
 .town-canvas>svg{background:#FFFFFF;}
 
 @media(min-width:701px) and (max-height:760px){
@@ -38,7 +38,7 @@ html[data-hero-story="complete"] .hero-panorama,html[data-hero-story="complete"]
  .hero-panorama{top:calc(var(--growth-top) + var(--growth-lead-size)*3.1 + 8px + var(--growth-art-size)*.93062 - 31.31vw);bottom:auto;height:31.31vw;width:100%;}
 }
 @media(prefers-reduced-motion:reduce){.hero-panorama,.hero-tree-layer{will-change:auto;}}
-@media print{.hero-panorama{opacity:1!important;transform:none!important}.hero-tree-layer{opacity:0!important}.hero-tree-layer[data-tree-stage="mature"]{opacity:1!important;transform:none!important}.hero-char{opacity:1!important;transform:none!important}.hero-water{opacity:0!important}.hero-person-pose{opacity:0!important}.hero-person-pose[data-paper-pose="resting"]{opacity:1!important}}
+@media print{.hero-panorama{opacity:1!important;transform:none!important;clip-path:none!important}.hero-tree-layer{opacity:0!important}.hero-tree-layer[data-tree-stage="mature"]{opacity:1!important;transform:none!important}.hero-char{opacity:1!important;transform:none!important}.hero-person-pose{opacity:0!important}.hero-person-pose[data-paper-pose="resting"]{opacity:1!important}}
 
 /* Paint the white edge beneath the black letter shape, including during reveal. */
 .hero--story .hero-verb .hero-char{-webkit-text-stroke:clamp(3px,.45vw,7px) #FFFFFF;paint-order:stroke fill;color:#0B0D10;}
