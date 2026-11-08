@@ -18,16 +18,14 @@ export function treeScale(index,time){return Math.max(.00001,Math.min(treeHeight
 export const PLAYBACK_RATE=2;
 export const PLAYBACK_DURATION=DURATION/PLAYBACK_RATE;
 
-// These are story-clock times; all elements use the same 2x playback clock.
-export const COPY_WINDOWS=Object.freeze({
- intro:Object.freeze({start:500,end:TREE_GROWTH.end}),
- verb:TOWN,
-});
-export function characterTimings(phase,count){
- if(!count)return[];
- const {start,end}=COPY_WINDOWS[phase],step=(end-start)/count;
- return Array.from({length:count},(_,index)=>({
-  start:start+index*step,
-  end:index===count-1?end:start+(index+1)*step,
- }));
+// Restore real-time glyph spacing; keep the existing phase starts on the story clock.
+export const COPY_START=Object.freeze({intro:500,verb:TOWN.start});
+export const COPY_FADE_MS=290;
+export function characterTimings(phase,delays){
+ if(!delays.length)return[];
+ const origin=delays[0];
+ return delays.map(delay=>{
+  const start=COPY_START[phase]+(delay-origin)*PLAYBACK_RATE;
+  return{start,end:start+COPY_FADE_MS*PLAYBACK_RATE};
+ });
 }
