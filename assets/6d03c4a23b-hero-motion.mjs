@@ -10,3 +10,5 @@ export function townProgress(time){return smooth((time-TOWN.start)/(TOWN.end-TOW
 const POSE_WINDOWS={planting:[0,0,1500,1800],watering:[1500,1800,5100,5400],watching:[5100,5400,8200,8500],resting:[8200,8500,DURATION,DURATION]};
 export function poseOpacity(name,time){const[start,full,fade,end]=POSE_WINDOWS[name],incoming=full===start?1:smooth((time-start)/(full-start)),outgoing=end===fade?0:smooth((time-fade)/(end-fade));return incoming*(1-outgoing);}
 export function sampleTimes(){const values=new Set([0,DURATION,500,800,1500,1800,2000,5100,5400,8200,8500,10200,11000]);for(let t=0;t<DURATION;t+=80)values.add(t);return[...values].sort((a,b)=>a-b);}
+
+export function treeScale(index,time){return Math.max(.00001,Math.min(treeHeight(time),[285,640,930,1126][index])/TREE_HEIGHTS[index]);}

@@ -1,0 +1,56 @@
+/* A full-width landscape shares the tree's ground, outside the foreground square. */
+.hero.hero--story{--scene-size:min(65vw,calc(100svh - 280px),650px);height:max(790px,calc(var(--hero-town-height,31.31vw) + 390px),calc(100svh - 132px));min-height:790px;max-width:none;margin:0;}
+.hero--story .hero-art{animation:none;top:auto;right:0;bottom:158px;width:var(--scene-size);height:var(--scene-size);aspect-ratio:1;z-index:-1;}
+.hero--story .hero-lead{top:64px;z-index:2;}
+.hero--story .hero-verb{bottom:14px;z-index:2;font-size:clamp(100px,13vw,184px);}
+.hero--story .hero-scroll{bottom:23px;z-index:3;}
+.hero--story .hero-char{animation:none!important;}
+.hero-panorama{position:absolute;inset:auto 0 calc(158px + var(--scene-size)*.06938);width:100%;height:var(--hero-town-height,31.31vw);z-index:-2;pointer-events:none;clip-path:none;overflow:hidden;opacity:.7;}
+.hero-panorama>img{position:absolute;left:0;top:0;display:block;width:100%;height:auto;max-width:none;}
+.hero-tree-layer{position:absolute;inset:0;opacity:0;transform-origin:48.88357257% 93.06220096%;}
+.hero-tree-layer[data-tree-stage="mature"]{opacity:1;}
+ .hero-seed{opacity:0;}
+.hero-person-pose{position:absolute;opacity:0;will-change:opacity;}
+.hero-person-pose[data-paper-pose="resting"]{opacity:1;}
+html[data-hero-story="pending"] .hero-person-pose{opacity:0;}
+html[data-hero-story="pending"] .hero-person-pose[data-paper-pose="planting"]{opacity:1;}
+html[data-hero-story="pending"] .hero-panorama,html[data-hero-story="pending"] .hero-tree-layer,html[data-hero-story="pending"] .hero-char{opacity:0;}
+.hero-panorama{will-change:clip-path;}
+.hero-tree-layer{will-change:transform,opacity;}
+html[data-hero-story="still"] .hero-panorama,html[data-hero-story="still"] .hero-tree-layer{will-change:auto;}
+
+/* The original town grain stays visible between rich black and clean white. */
+.town-section{background:#FFFFFF;}
+.town-section .town-art{max-width:1440px;width:100%;margin-left:auto;margin-right:auto;}
+.town-canvas>svg{background:#FFFFFF;}
+
+@media(min-width:701px) and (max-height:760px){
+ .hero.hero--story{--scene-size:min(61vw,510px);height:max(790px,calc(var(--hero-town-height,31.31vw) + 390px));min-height:790px;}
+ .hero--story .hero-art{bottom:158px;}
+ .hero--story .hero-lead{font-size:clamp(28px,3.65vw,48px);top:54px;}
+}
+@media(max-width:700px){
+ .town-section .town-art{height:auto;min-height:260px;}
+ .hero.hero--story{--growth-art-size:min(100vw,520px);--growth-lead-size:clamp(21px,6.4vw,30px);--growth-top:clamp(34px,10vw,52px);height:auto;min-height:0;padding:var(--growth-top) var(--gutter) 18px;}
+ .hero--story .hero-lead{position:static;font-size:var(--growth-lead-size);}
+ .hero--story .hero-art{top:calc(var(--growth-top) + var(--growth-lead-size)*3.1 + 8px);bottom:auto;left:0;right:0;margin-inline:auto;width:var(--growth-art-size);height:var(--growth-art-size);transform:none;}
+ .hero--story .hero-verb{position:static;display:block;margin-top:calc(var(--growth-art-size) - 12px);font-size:min(17.2vw,112px);}
+ .hero--story .hero-scroll{position:static;width:max-content;margin:10px 0 0 auto;}
+ .hero-panorama{top:calc(var(--growth-top) + var(--growth-lead-size)*3.1 + 8px + var(--growth-art-size)*.93062 - var(--hero-town-height,31.31vw));bottom:auto;height:var(--hero-town-height,31.31vw);width:100%;}
+}
+@media(prefers-reduced-motion:reduce){.hero-panorama,.hero-tree-layer{will-change:auto;}}
+@media print{.hero-panorama{opacity:.7!important;transform:none!important;clip-path:none!important}.hero-tree-layer{opacity:0!important}.hero-tree-layer[data-tree-stage="mature"]{opacity:1!important;transform:none!important}.hero-char{opacity:1!important;transform:none!important}.hero-person-pose{opacity:0!important}.hero-person-pose[data-paper-pose="resting"]{opacity:1!important}}
+
+/* Paint the white edge beneath the black letter shape, including during reveal. */
+.hero--story .hero-verb .hero-char{-webkit-text-stroke:clamp(3px,.45vw,7px) #FFFFFF;paint-order:stroke fill;color:#0B0D10;}
+
+/* Static image effects stay inside GPU-composited transform/opacity wrappers. */
+.hero--story .hero-art{contain:layout paint style;}
+.hero-filter-defs{position:absolute;pointer-events:none;}
+.hero-raster-stage{position:absolute;inset:0;}
+.hero--story .hero-raster-stage img{display:block;width:100%;height:100%;max-width:none;pointer-events:none;}
+.hero-tree-layer>img{position:absolute;left:0;filter:url(#paper-tree-tone);}
+.hero-person-pose>img{filter:grayscale(1);}
+.hero-seed{position:absolute;}
+.hero-ground-shadow{position:absolute;left:40.82934609%;top:92.34449761%;width:25.19936204%;height:1.59489633%;border-radius:50%;background:rgba(11,13,16,.05);}
+.hero--story [hidden]{display:none!important;}
