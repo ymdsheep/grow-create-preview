@@ -9,10 +9,12 @@
 .hero-panorama>svg{display:block;width:100%;height:100%;}
 .hero-tree-layer{opacity:0;transform-box:view-box;transform-origin:613px 1167px;filter:url(#paper-tree-tone);}
 .hero-tree-layer[data-tree-stage="mature"]{opacity:1;filter:url(#paper-tree-tone);}
-[data-rig-part]{transform-box:view-box;transform-origin:0 0;}
-[data-rig-part="can"],.hero-water,.hero-seed{opacity:0;}
+ .hero-water,.hero-seed{opacity:0;}
 .hero-water{fill:none;stroke:#7A7D80;stroke-width:2;stroke-linecap:round;stroke-dasharray:2 10;}
-.hero-person{filter:none;}
+.hero-person-pose{opacity:0;filter:grayscale(1);}
+.hero-person-pose[data-paper-pose="resting"]{opacity:1;}
+html[data-hero-story="pending"] .hero-person-pose{opacity:0;}
+html[data-hero-story="pending"] .hero-person-pose[data-paper-pose="planting"]{opacity:1;}
 html[data-hero-story="pending"] .hero-panorama,html[data-hero-story="pending"] .hero-tree-layer,html[data-hero-story="pending"] .hero-char{opacity:0;}
 .hero-panorama,.hero-tree-layer{will-change:transform,opacity;}
 html[data-hero-story="complete"] .hero-panorama,html[data-hero-story="complete"] .hero-tree-layer,html[data-hero-story="still"] .hero-panorama,html[data-hero-story="still"] .hero-tree-layer{will-change:auto;}
@@ -36,4 +38,7 @@ html[data-hero-story="complete"] .hero-panorama,html[data-hero-story="complete"]
  .hero-panorama{top:calc(var(--growth-top) + var(--growth-lead-size)*3.1 + 8px + var(--growth-art-size)*.93062 - 31.31vw);bottom:auto;height:31.31vw;width:100%;}
 }
 @media(prefers-reduced-motion:reduce){.hero-panorama,.hero-tree-layer{will-change:auto;}}
-@media print{.hero-panorama{opacity:1!important;transform:none!important}.hero-tree-layer{opacity:0!important}.hero-tree-layer[data-tree-stage="mature"]{opacity:1!important;transform:none!important}.hero-char{opacity:1!important;transform:none!important}.hero-water,[data-rig-part="can"]{opacity:0!important}}
+@media print{.hero-panorama{opacity:1!important;transform:none!important}.hero-tree-layer{opacity:0!important}.hero-tree-layer[data-tree-stage="mature"]{opacity:1!important;transform:none!important}.hero-char{opacity:1!important;transform:none!important}.hero-water{opacity:0!important}.hero-person-pose{opacity:0!important}.hero-person-pose[data-paper-pose="resting"]{opacity:1!important}}
+
+/* Paint the white edge beneath the black letter shape, including during reveal. */
+.hero--story .hero-verb .hero-char{-webkit-text-stroke:clamp(3px,.45vw,7px) #FFFFFF;paint-order:stroke fill;color:#0B0D10;}
