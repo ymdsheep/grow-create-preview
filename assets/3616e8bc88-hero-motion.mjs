@@ -12,3 +12,7 @@ export function poseOpacity(name,time){const[start,full,fade,end]=POSE_WINDOWS[n
 export function sampleTimes(){const values=new Set([0,DURATION,500,800,1500,1800,2000,5100,5400,8200,8500,10200,11000]);for(let t=0;t<DURATION;t+=80)values.add(t);return[...values].sort((a,b)=>a-b);}
 
 export function treeScale(index,time){return Math.max(.00001,Math.min(treeHeight(time),[285,640,930,1126][index])/TREE_HEIGHTS[index]);}
+
+// Keep the approved scene timing together; the shared browser clock plays it at 2x.
+export const PLAYBACK_RATE=2;
+export const PLAYBACK_DURATION=DURATION/PLAYBACK_RATE;

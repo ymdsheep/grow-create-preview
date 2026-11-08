@@ -1,20 +1,30 @@
-import {DURATION,treeWeights,treeScale,seedOpacity,townProgress,poseOpacity,sampleTimes} from '/grow-create-preview/assets/6d03c4a23b-hero-motion.mjs';
+import {DURATION,PLAYBACK_RATE,PLAYBACK_DURATION,treeWeights,treeScale,seedOpacity,townProgress,poseOpacity,sampleTimes} from '/grow-create-preview/assets/3616e8bc88-hero-motion.mjs';
 
 const root=document.querySelector('.hero--story');
 if(root){
  const html=document.documentElement,reduced=matchMedia('(prefers-reduced-motion: reduce)'),animations=[];
  let finished=false,lastWidth=0;
  function sizeScene(){
-  const width=Math.round(root.getBoundingClientRect().width);
+  const box=root.getBoundingClientRect(),width=Math.round(box.width);
   if(!width||width===lastWidth)return;
   lastWidth=width;
-  root.style.setProperty('--growth-art-size',`${Math.min(width,520)}px`);
+  const naturalSize=Math.min(width,520);
+  root.style.setProperty('--growth-art-size',`${naturalSize}px`);
   root.style.setProperty('--hero-town-height',`${Math.round(width*680/2172)}px`);
+  if(matchMedia('(max-width:700px)').matches){
+   // Budget against the first viewport, including the header and preview notice.
+   // Browser chrome height changes do not resize the scene during playback.
+   const current=root.getBoundingClientRect();
+   const fixedHeight=current.height-naturalSize;
+   const available=innerHeight-(current.top+scrollY)-fixedHeight-8;
+   const fittedSize=Math.max(160,Math.min(naturalSize,Math.floor(available)));
+   root.style.setProperty('--growth-art-size',`${fittedSize}px`);
+  }
  }
  sizeScene();
  window.addEventListener('resize',sizeScene,{passive:true});
  const finish=(mode='still')=>{
-  finished=true;clearTimeout(window.__growStoryFallback29);html.dataset.heroStory=mode;
+  finished=true;clearTimeout(window.__growStoryFallback30);html.dataset.heroStory=mode;
   if(mode==='complete'){
    root.querySelectorAll('[data-tree-stage]:not([data-tree-stage="mature"]),[data-paper-pose]:not([data-paper-pose="resting"]),.hero-seed').forEach(el=>el.setAttribute('hidden',''));
    return; // Retain the exact final layer instead of cancelling and rerasterizing it.
@@ -29,16 +39,16 @@ if(root){
    const urls=[...new Set([...root.querySelectorAll('img,image')].map(img=>img.getAttribute('src')||img.getAttribute('href')))];
    await Promise.all(urls.map(url=>new Promise((resolve,reject)=>{const img=new Image();img.onload=resolve;img.onerror=reject;img.src=url;if(img.decode)img.decode().then(resolve,reject);})));
    if(finished||html.dataset.heroStory!=='pending')return;
-   clearTimeout(window.__growStoryFallback29);
+   clearTimeout(window.__growStoryFallback30);
    const times=sampleTimes(),clock=document.timeline.currentTime;
-   const play=(element,frames,options={})=>{const a=element.animate(frames,{duration:DURATION,fill:'both',easing:'linear',...options});if(Number.isFinite(clock))a.startTime=clock;animations.push(a);};
+   const play=(element,frames,options={})=>{const a=element.animate(frames,{duration:DURATION,fill:'both',easing:'linear',...options});a.playbackRate=PLAYBACK_RATE;if(Number.isFinite(clock))a.startTime=clock;animations.push(a);};
    root.querySelectorAll('[data-paper-pose]').forEach(pose=>play(pose,times.map(t=>({offset:t/DURATION,opacity:poseOpacity(pose.dataset.paperPose,t)}))));
    root.querySelectorAll('[data-tree-stage]').forEach((tree,i)=>play(tree,times.map(t=>({offset:t/DURATION,opacity:treeWeights(t)[i],transform:`translate3d(0,0,0) scale(${treeScale(i,t)})`}))));
    play(root.querySelector('.hero-seed'),times.map(t=>({offset:t/DURATION,opacity:seedOpacity(t)})));
    play(root.querySelector('.hero-panorama'),times.map(t=>{const inset=(1-townProgress(t))*50;return{offset:t/DURATION,clipPath:`inset(0 ${inset}% 0 ${inset}%)`};}));
    root.querySelectorAll('.hero-char').forEach(character=>{const delay=parseFloat(character.style.getPropertyValue('--char-delay'))||0;play(character,[{opacity:0},{opacity:1}],{duration:290,delay,easing:'cubic-bezier(.2,.65,.3,1)'});});
-   html.dataset.heroStoryStarted=String(Date.now());html.dataset.heroStoryDuration=String(DURATION);html.dataset.heroStory='playing';
-   if(html.hasAttribute('data-hero-review-ms')){const time=Number(html.dataset.heroReviewMs);animations.forEach(a=>{a.pause();a.currentTime=time;});html.dataset.heroStory='review';return;}
+   html.dataset.heroStoryStarted=String(Date.now());html.dataset.heroStoryDuration=String(PLAYBACK_DURATION);html.dataset.heroStory='playing';
+   if(html.hasAttribute('data-hero-review-ms')){const time=Number(html.dataset.heroReviewMs);animations.forEach(a=>{a.pause();a.currentTime=time*PLAYBACK_RATE;});html.dataset.heroStory='review';return;}
    if(html.hasAttribute('data-hero-frame-metrics')){
     const gaps=[],boxes=[];let last=performance.now(),frames=0;
     const measure=now=>{
