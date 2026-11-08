@@ -1,4 +1,4 @@
-import {DURATION,PLAYBACK_RATE,PLAYBACK_DURATION,treeWeights,treeScale,seedOpacity,townProgress,poseOpacity,sampleTimes} from '/grow-create-preview/assets/d95153d728-hero-motion.mjs';
+import {DURATION,PLAYBACK_RATE,PLAYBACK_DURATION,treeWeights,treeScale,seedOpacity,townProgress,poseOpacity,sampleTimes} from '/grow-create-preview/assets/3a5dbdf613-hero-motion.mjs';
 
 const root=document.querySelector('.hero--story');
 if(root){
@@ -24,7 +24,7 @@ if(root){
  sizeScene();
  window.addEventListener('resize',sizeScene,{passive:true});
  const finish=(mode='still')=>{
-  finished=true;clearTimeout(window.__growStoryFallback32);html.dataset.heroStory=mode;
+  finished=true;clearTimeout(window.__growStoryFallback33);html.dataset.heroStory=mode;
   if(mode==='complete'){
    root.querySelectorAll('[data-tree-stage]:not([data-tree-stage="mature"]),[data-paper-pose]:not([data-paper-pose="resting"]),.hero-seed').forEach(el=>el.setAttribute('hidden',''));
    return; // Retain the exact final layer instead of cancelling and rerasterizing it.
@@ -39,7 +39,7 @@ if(root){
    const urls=[...new Set([...root.querySelectorAll('img,image')].map(img=>img.getAttribute('src')||img.getAttribute('href')))];
    await Promise.all(urls.map(url=>new Promise((resolve,reject)=>{const img=new Image();img.onload=resolve;img.onerror=reject;img.src=url;if(img.decode)img.decode().then(resolve,reject);})));
    if(finished||html.dataset.heroStory!=='pending')return;
-   clearTimeout(window.__growStoryFallback32);
+   clearTimeout(window.__growStoryFallback33);
    const times=sampleTimes(),clock=document.timeline.currentTime;
    const play=(element,frames,options={},rate=PLAYBACK_RATE)=>{const a=element.animate(frames,{duration:DURATION,fill:'both',easing:'linear',...options});a.playbackRate=rate;if(Number.isFinite(clock))a.startTime=clock;animations.push(a);};
    root.querySelectorAll('[data-paper-pose]').forEach(pose=>play(pose,times.map(t=>({offset:t/DURATION,opacity:poseOpacity(pose.dataset.paperPose,t)}))));
