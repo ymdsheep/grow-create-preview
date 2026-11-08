@@ -54,3 +54,6 @@ html[data-hero-story="still"] .hero-panorama,html[data-hero-story="still"] .hero
 .hero-seed{position:absolute;}
 .hero-ground-shadow{position:absolute;left:40.82934609%;top:92.34449761%;width:25.19936204%;height:1.59489633%;border-radius:50%;background:rgba(11,13,16,.05);}
 .hero--story [hidden]{display:none!important;}
+
+/* The shared story clock owns the seed; keep it under the planting fingers. */
+.hero--story .hero-seed{animation:none!important;transform:none;}

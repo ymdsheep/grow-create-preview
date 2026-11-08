@@ -1,4 +1,4 @@
-import {assemblyTransform, placementForScroll} from '/grow-create-preview/assets/dfb1f1b42d-distribution-math.mjs';
+import {assemblyTransform, placementForScroll} from '/grow-create-preview/assets/2caf19b39b-distribution-math.mjs';
 
 const sequence = document.querySelector('[data-design-distribution]');
 if (sequence) {
