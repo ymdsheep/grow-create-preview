@@ -42,7 +42,7 @@ body { background: var(--paper); color: var(--ink); }
 .hero-stage-sprout,
 .hero-stage-young,
 .hero-stage-developing,
-.hero-growing-tree { filter: url("#paper-tree-tone"); }
+.hero-growing-tree { filter: url(#paper-tree-tone); }
 
 .hero-growth-person,
 .sequence-drawing image,
