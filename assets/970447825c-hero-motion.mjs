@@ -19,7 +19,7 @@ export const PLAYBACK_RATE=2;
 export const PLAYBACK_DURATION=DURATION/PLAYBACK_RATE;
 
 // Restore real-time glyph spacing; keep the existing phase starts on the story clock.
-export const COPY_START=Object.freeze({intro:500,verb:TOWN.start});
+export const COPY_START=Object.freeze({intro:500,verb:1450*PLAYBACK_RATE});
 export const COPY_FADE_MS=290;
 export function characterTimings(phase,delays){
  if(!delays.length)return[];
