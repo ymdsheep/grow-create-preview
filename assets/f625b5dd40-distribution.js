@@ -1,4 +1,4 @@
-import {assemblyTransform, placementForScroll} from '/grow-create-preview/assets/1fbfe94fb6-distribution-math.mjs';
+import {assemblyTransform, placementForScroll} from '/grow-create-preview/assets/4f19ec01df-distribution-math.mjs';
 
 const sequence = document.querySelector('[data-design-distribution]');
 if (sequence) {
@@ -13,7 +13,7 @@ if (sequence) {
   }));
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const still = new URLSearchParams(location.search).has('still');
-  const duration = 720;
+  const duration = Number(sequence.dataset.distributionDuration ?? 720);
   let placed = false;
   let enabled = false;
   let frame = 0;
