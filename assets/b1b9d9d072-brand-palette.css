@@ -33,12 +33,7 @@ a > svg.link-arrow { margin-inline-start: .35em; }
 
 .sequence-art,
 .location-map,
-.company-map svg,
-.review-foot,
-.review-note { background: #ffffff; }
-
-.review-foot,
-.review-note { border-top: 1px solid var(--line); }
+.company-map svg { background: #ffffff; }
 
 .about-philosophy::before { background: none; }
 .about-philosophy,

@@ -42,8 +42,6 @@
 .distribution-note h3 + p,
 .distribution-note .sequence-detail { font-size: clamp(15px, 1.26vw, 17px); line-height: 1.85; }
 .distribution-note .sequence-detail dt { color: var(--ink); }
-.design-distribution figcaption { border-top: 1px solid var(--rule); padding-top: 10px; color: var(--quiet); font-size: 11px; text-align: right; }
-
 
 @media (max-width: 760px) {
   .distribution-overview,
