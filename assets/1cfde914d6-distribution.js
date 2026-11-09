@@ -1,4 +1,4 @@
-import {assemblyTransform, placementForScroll} from '/grow-create-preview/assets/4f19ec01df-distribution-math.mjs';
+import {assemblyTransform, placementForScroll} from '/grow-create-preview/assets/83f44bf135-distribution-math.mjs';
 
 const sequence = document.querySelector('[data-design-distribution]');
 if (sequence) {
@@ -13,7 +13,7 @@ if (sequence) {
   }));
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const still = new URLSearchParams(location.search).has('still');
-  const duration = Number(sequence.dataset.distributionDuration ?? 720);
+  const duration = 1500;
   let placed = false;
   let enabled = false;
   let frame = 0;
@@ -56,7 +56,7 @@ if (sequence) {
       if (!animate) return;
       part.visual.style.willChange = 'transform';
       const animation = part.visual.animate([{transform: from[index]}, {transform: to}], {
-        duration, easing: 'cubic-bezier(.22,.72,.25,1)', fill: 'both',
+        duration, easing: 'cubic-bezier(.3,.15,.5,1)', fill: 'both',
       });
       if (Number.isFinite(startedAt)) animation.startTime = startedAt;
       part.animation = animation;
