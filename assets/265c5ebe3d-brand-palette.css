@@ -12,6 +12,16 @@
 
 body { background: var(--paper); color: var(--ink); }
 
+svg.link-arrow {
+  display: inline-block;
+  flex: none;
+  width: .9em;
+  height: .9em;
+  vertical-align: -.04em;
+}
+
+a > svg.link-arrow { margin-inline-start: .35em; }
+
 .total-design,
 .total-design--living {
   --accent: #0b0d10;

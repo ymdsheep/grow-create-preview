@@ -197,6 +197,7 @@
 .reference-diagram > summary { font-size: 12px; min-height: 44px; font-weight: 580; border-top: 1px solid var(--rule); }
 .reference-diagram .diagram-stills img { max-height: 210px; object-fit: contain; }
 .design-approach { align-items: start; }
+.design-intro + .design-approach { border-top: 1px solid var(--accent); }
 .approach-copy { max-width: 44em; border-left: 1px solid var(--rule); padding-left: clamp(16px, 2.5vw, 36px); }
 .approach-copy p + p { margin-top: 9px; }
 .design-consultation { color: var(--paper); background: var(--dark); }
